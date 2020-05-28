@@ -10,6 +10,6 @@ namespace SimpleApp.Domain.Entities
         public string ProductName { get; set; }
         public string Description { get; set; }
         // decimal unit price will be problematic in real situation for fractions
-        public decimal UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }        
     }
 }
