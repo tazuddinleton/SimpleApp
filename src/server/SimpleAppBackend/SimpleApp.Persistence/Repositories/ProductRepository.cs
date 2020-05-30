@@ -34,6 +34,7 @@ namespace SimpleApp.Persistence.Repositories
             {
                 entity = _context.Products.Find(dto.ProductId);
                 if (entity is null)
+                    // TODO: Configure global exception handler and handle this exception
                     throw new RecordNotFoundException("Record you tried to update is either deleted or does not exists.");
                 entity.ProductName = dto.ProductName;
                 entity.Description = dto.Description;
