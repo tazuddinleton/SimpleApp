@@ -9,6 +9,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule,    
+    HttpClientModule,
     RouterModule.forRoot([      
       {path: 'home', component: HomeComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,7 +28,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     ]),
     AuthModule,
     DashboardModule, 
-    ProductModule,    
+    ProductModule        
   ],
   providers: [],
   bootstrap: [AppComponent]
