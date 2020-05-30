@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace SimpleApp.Persistence.Repositories
 {
+    // I"m not going to use Cencellation token
     public interface IProductRepository
     {
-        Task<IEnumerable<ProductDto>> GetAll(CancellationToken ct);
-        Task<ProductDto> GetById(int id, CancellationToken ct);
-        Task<int> Upsert(ProductDto dto, CancellationToken ct);
+        Task<IEnumerable<ProductDto>> GetAllAsync();
+        Task<ProductDto> GetByIdAsync(int id);
+        Task<int> UpsertAsync(ProductDto dto);
+        Task DeleteAsync(int id);
     }
 }

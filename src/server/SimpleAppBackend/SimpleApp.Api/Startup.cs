@@ -26,12 +26,11 @@ namespace SimpleApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            // I wanted to use the extension method to configure the db context but it creats problem in migrations
-            services.AddPersistence(Configuration);
-            //services.AddDbContext<SimpleAppDbContext>(optBuilder => {
-            //    optBuilder.UseSqlServer(Configuration.GetConnectionString("simple"));
-            //});            
+            services.AddControllers();            
+            // extension methods are great way to keep things clean
+            services
+                .AddPersistence(Configuration)
+                .AddRepositories();                     
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

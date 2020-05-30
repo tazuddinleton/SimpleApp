@@ -13,10 +13,11 @@ namespace SimpleApp.Domain.DTOs
         public string Description { get; set; }        
         public decimal UnitPrice { get; set; }
 
-        // This mapping could have been done using tools like Automapper 
-        // but to keep things simple
+        // This mapping could have been done using tools like Automapper         
         public static ProductDto FromEntity(Product product)
         {
+            if (product is null)
+                return null;
             return new ProductDto
             {
                 ProductId = product.ProductId,

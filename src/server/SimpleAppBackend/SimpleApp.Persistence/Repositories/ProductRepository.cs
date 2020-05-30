@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleApp.Domain.DTOs;
 using SimpleApp.Domain.Entities;
+using SimpleApp.Persistence.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +19,25 @@ namespace SimpleApp.Persistence.Repositories
         {
             _context = context;
         }
-        // Recently gained some async knowledge, putting cancellation token in async method makes sense because this could provide
-        // some performance benefits if user decides to cancel some running request. Though I have no plan to implement that here.
+        
 
-        public async Task<ProductDto> GetById(int id, CancellationToken ct)
+        public async Task<ProductDto> GetByIdAsync(int id)
         {
-            var product = await _context.Products.FindAsync(id, ct);
+            var product = await _context.Products.FindAsync(id);
             return ProductDto.FromEntity(product);
         }
 
-        public async Task<int> Upsert(ProductDto dto, CancellationToken ct)
+        public async Task<int> UpsertAsync(ProductDto dto)
         {
             Product entity;
-            if (dto.ProductId.HasValue)
+            if (dto.ProductId.Value > 0)
             {
                 entity = _context.Products.Find(dto.ProductId);
+                if (entity is null)
+                    throw new RecordNotFoundException("Record you tried to update is either deleted or does not exists.");
+                entity.ProductName = dto.ProductName;
+                entity.Description = dto.Description;
+                entity.UnitPrice = dto.UnitPrice;
             }
             else
             {
@@ -43,11 +48,19 @@ namespace SimpleApp.Persistence.Repositories
             return entity.ProductId;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAll(CancellationToken ct)
+        public async Task<IEnumerable<ProductDto>> GetAllAsync()
         {
             return await _context.Products
                 .Select(p => ProductDto.FromEntity(p))
-                .ToListAsync(ct);
+                .ToListAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var entity = _context.Products.Find(id);
+            if (entity != null)
+                _context.Remove(entity);
+             await _context.SaveChangesAsync();
         }
     }
 }
