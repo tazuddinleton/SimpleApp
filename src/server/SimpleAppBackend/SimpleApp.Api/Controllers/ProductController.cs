@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace SimpleApp.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    
+    public class ProductController : BaseController
     {
         private readonly IProductRepository _productRepository;
         public ProductController(IProductRepository productRepo)

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +27,8 @@ namespace SimpleApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();            
+            // setting the global authorize filter to prevent unauthorized access
+            services.AddControllers(/*x => x.Filters.Add(new AuthorizeFilter())*/);            
             // extension methods are great way to keep things clean
             services
                 .AddPersistence(Configuration)
@@ -42,6 +44,8 @@ namespace SimpleApp.Api
             }
 
             app.UseRouting();
+
+            
 
             app.UseAuthorization();
 

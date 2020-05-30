@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleApp.Domain\SimpleApp.Domain.csproj" />
+    <ProjectReference Include="..\SimpleApp.Infrastructure\SimpleApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

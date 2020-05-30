@@ -9,6 +9,7 @@ namespace SimpleApp.Persistence
     public class SimpleAppDbContext : DbContext
     {        
         public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         public SimpleAppDbContext(DbContextOptions<SimpleAppDbContext> options)
