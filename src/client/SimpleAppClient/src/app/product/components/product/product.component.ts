@@ -1,13 +1,16 @@
 import { OnInit, Component } from '@angular/core';
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/productService';
 
-@Component({
-    selector: 'product',
+@Component({    
     templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit{
-    constructor(){
-
+    product: Product;
+    constructor(private productService: ProductService){
+        
     }
+    
     ngOnInit(): void {
         throw new Error("Method not implemented.");
     }

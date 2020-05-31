@@ -1,6 +1,6 @@
-export interface IProduct {
-    productId?:number,
-    productName:string,
-    Description:string,
-    UnitPrice:number
+export class Product {
+    productId?: number;
+    productName:string;
+    description:string;
+    unitPrice:number;
 }

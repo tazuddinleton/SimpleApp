@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
+        CommonModule,
         FormsModule,
         RouterModule.forChild([
             {path: 'login', component: LoginComponent}

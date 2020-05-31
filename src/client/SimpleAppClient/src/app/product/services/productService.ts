@@ -1,4 +1,17 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../models/product';
+import { Observable } from 'rxjs';
 
-export class ProductService{
+@Injectable()
+export class ProductService {
+    // todo: make it injected
+    apiBase: string = 'http://localhost:2020/api/';
+    constructor(private http: HttpClient){
 
+    }
+
+    getAllProducts(): Observable<Product[]>{
+        return this.http.get<Product[]>(this.apiBase + "product");
+    }
 }

@@ -1,1 +1,26 @@
-product list will be shown here...
+<table
+  class="table table-border table-striped"
+  aria-labelledby="tableLabel"
+  *ngIf="products && products.length"
+>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Product Name</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>
+        <a [routerLink]="['/products', product.productId, 'edit']" style="font-size: 15px; color: dodgerblue;">
+          <i class="fa fa-edit"></i
+        ></a>
+      </td>
+      <td>{{ product.productName }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.unitPrice }}</td>
+    </tr>
+  </tbody>
+</table>
