@@ -3,16 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { LoginModel, LoginResponse } from '../models/login.model';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
-import { Router } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 
 
 
 @Injectable()
-export class AuthService {
+export class AuthService implements CanActivate{
   // api should be injected here
   apiBase: string = 'http://localhost:2020/api/';
   user: User
   constructor(private http: HttpClient, private router: Router) {}
+  canActivate(): boolean  {
+    return this.isLoggedIn;
+  }
 
   login(model: LoginModel): void{
       this.http.post(this.apiBase + "account/login", model)
@@ -32,6 +35,7 @@ export class AuthService {
   logOut(){
     this.user = null;
     localStorage.clear();
+    this.router.navigate(['/']);
   }
 
   logUserInOnRefresh(){
