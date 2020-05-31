@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleApp.Domain.Entities;
-using SimpleApp.Infrastructure;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,8 @@ namespace SimpleApp.Persistence.Repositories
         
         public async Task<User> GetByUsernameAndPassword(string username, string password)
         {
-            return await _context.Users.FirstOrDefaultAsync(user => user.Username == username && user.Password == password.ToSHA256());
+            return await _context.Users
+                .FirstOrDefaultAsync(user => user.Username == username && user.Password == password.ToSHA256());
         }
     }
 }

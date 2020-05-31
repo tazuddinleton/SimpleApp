@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SimpleApp.Domain.Entities;
-using SimpleApp.Infrastructure;
+
 using System;
 using System.Collections.Generic;
 using System.Text;

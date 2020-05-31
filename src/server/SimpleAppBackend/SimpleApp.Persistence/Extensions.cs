@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimpleApp.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace SimpleApp.Persistence
@@ -25,6 +26,16 @@ namespace SimpleApp.Persistence
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             return services;
+        }
+
+        public static string ToSHA256(this string input)
+        {
+            using (var sha = SHA256.Create())
+            {
+                var bytes = Encoding.UTF8.GetBytes(input);
+                var hash = sha.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
+            }
         }
     }
 }

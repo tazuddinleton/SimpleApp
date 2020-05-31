@@ -10,8 +10,7 @@ namespace SimpleApp.Api.Common
     {
         [Required]
         public string Username { get; set; }
-        [Required]
-        [DataType(DataType.Password)]
+        [Required]        
         public string Password { get; set; }
     }
 }
