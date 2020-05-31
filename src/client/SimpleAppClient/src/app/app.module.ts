@@ -10,6 +10,7 @@ import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import {HttpClientModule} from '@angular/common/http'
+import { AuthService } from './auth/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import {HttpClientModule} from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,    
-    HttpClientModule,
+    HttpClientModule,    
     RouterModule.forRoot([      
       {path: 'home', component: HomeComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,7 +31,7 @@ import {HttpClientModule} from '@angular/common/http'
     DashboardModule, 
     ProductModule        
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
