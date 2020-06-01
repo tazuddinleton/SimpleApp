@@ -4,6 +4,10 @@ import { LoginModel, LoginResponse } from '../models/login.model';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Router, CanActivate } from '@angular/router';
+import { NotificationService } from 'src/app/message/services/notification.service';
+import { Message } from 'src/app/message/models/notification';
+import { MessageType } from 'src/app/message/models/notification.type';
+
 
 
 
@@ -12,7 +16,10 @@ export class AuthService implements CanActivate{
   // api should be injected here
   apiBase: string = 'http://localhost:2020/api/';
   user: User
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private notificationService: NotificationService) {}
   canActivate(): boolean  {
     return this.isLoggedIn;
   }
@@ -25,7 +32,9 @@ export class AuthService implements CanActivate{
         this.router.navigate(['/dashboard']);
         this.user = {name: model.username};
         localStorage.setItem('username', model.username);
-      },this.handleError);
+      },(err) => {
+        this.handleError(err);
+      });
   }
   
   get isLoggedIn():boolean {
@@ -46,6 +55,7 @@ export class AuthService implements CanActivate{
   }
 
   private handleError(error: any){
+    this.notificationService.notify({type: MessageType.error, message: "Username/Password does not match"});    
     this.user = null;
   }  
 }

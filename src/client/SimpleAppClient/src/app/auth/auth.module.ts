@@ -16,8 +16,8 @@ import { CommonModule } from '@angular/common';
         CommonModule
     ],
     declarations: [
-        LoginComponent
-    ]
+        LoginComponent        
+    ]    
 })
 export class AuthModule{
 

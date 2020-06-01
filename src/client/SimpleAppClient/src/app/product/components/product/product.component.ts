@@ -2,9 +2,10 @@ import { OnInit, Component } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from 'src/app/common/services/notification.service';
+import { NotificationService } from 'src/app/message/services/notification.service';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
+import {MessageType} from '../../../message/models/notification.type';
 
 @Component({    
     templateUrl: './product.component.html'
@@ -44,7 +45,7 @@ export class ProductComponent implements OnInit{
             if(!this.product.productId){
                 this.product.productId = id;
             }
-            this.notificationService.notify("Product saved successfully");
+            this.notificationService.notify({message: "Product saved successfully", type: MessageType.success});
             this.router.navigate(['/products']);
         }, error => this.errorMsg = error)
     }

@@ -12,13 +12,18 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AuthService } from './auth/services/auth.service';
 import { AuthInterceptor } from './auth/infrastructure/auth.interceptor';
-import { NotificationService } from './common/services/notification.service';
+import { NotificationService } from './message/services/notification.service';
+import { NotificationComponent } from './message/components/notification.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,    
-    HomeComponent
+    HomeComponent,
+    NotificationComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -27,9 +32,10 @@ import { NotificationService } from './common/services/notification.service';
     AuthModule,
     DashboardModule, 
     ProductModule,
+ 
     
     RouterModule.forRoot([      
-      {path: 'home', component: HomeComponent},
+      {path: 'home', component: HomeComponent},      
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home'}
     ]),         
