@@ -4,6 +4,7 @@ import { DashboardComponent } from './components/dashboard.component';
 import { AuthService } from '../auth/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({   
     declarations: [
@@ -15,6 +16,9 @@ import { FormsModule } from '@angular/forms';
         RouterModule.forChild([
             {path: 'dashboard', component: DashboardComponent, canActivate: [AuthService]}
         ])
+    ],
+    providers: [
+        DashboardService
     ]
 })
 export class DashboardModule{
