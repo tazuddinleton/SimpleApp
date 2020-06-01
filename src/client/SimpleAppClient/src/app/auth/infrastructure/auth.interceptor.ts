@@ -1,7 +1,7 @@
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
+// todo: implement logout on unauthorized response
 export class AuthInterceptor implements HttpInterceptor{
     intercept(
         req: HttpRequest<any>, 

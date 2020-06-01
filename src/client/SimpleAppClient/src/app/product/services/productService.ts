@@ -14,4 +14,12 @@ export class ProductService {
     getAllProducts(): Observable<Product[]>{
         return this.http.get<Product[]>(this.apiBase + "product");
     }
+
+    getProductById(id: number): Observable<Product>{
+        return this.http.get<Product>(this.apiBase + "product/"+id.toString());
+    }
+
+    saveProduct(product: Product){
+        return this.http.post<number>(this.apiBase + "product", product);
+    }
 }

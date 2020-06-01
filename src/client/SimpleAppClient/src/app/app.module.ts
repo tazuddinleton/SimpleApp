@@ -12,7 +12,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AuthService } from './auth/services/auth.service';
 import { AuthInterceptor } from './auth/infrastructure/auth.interceptor';
-import { TestModule } from './test/test.module';
+import { NotificationService } from './common/services/notification.service';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,7 @@ import { TestModule } from './test/test.module';
   imports: [
     BrowserModule,
     HttpClientModule, 
-    AppRoutingModule, 
-    TestModule,
+    AppRoutingModule,     
     AuthModule,
     DashboardModule, 
     ProductModule,
@@ -37,6 +36,7 @@ import { TestModule } from './test/test.module';
   ],
   providers: [
     AuthService,
+    NotificationService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
