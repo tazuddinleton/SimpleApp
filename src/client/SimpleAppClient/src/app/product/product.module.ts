@@ -3,9 +3,10 @@ import { ProductComponent } from './components/product/product.component';
 import {RouterModule} from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AuthService } from '../auth/services/auth.service';
-import { ProductService } from './services/productService';
+import { ProductService } from './services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CategoryService } from './services/category.service';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     ],
    
     providers:[
-        ProductService
+        ProductService,
+        CategoryService
     ]
 })
 export class ProductModule{

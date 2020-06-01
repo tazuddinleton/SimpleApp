@@ -19,6 +19,19 @@
         </div>
 
         <div class="form-group">
+          <label for="category">Category</label>
+          <select 
+              name="category" 
+              id="category" 
+              class="form-control"
+              [(ngModel)]="product.categoryId"
+              >
+            <option value="">Please select</option>
+            <option *ngFor="let cat of categories" [value]="cat.categoryId">{{cat.categoryName}}</option>
+          </select>      
+        </div>
+
+        <div class="form-group">
           <label for="productname">Unit Price</label>
           <input
                 name="unitprice"

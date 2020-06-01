@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/productService';
+import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 
 @Component({
@@ -17,16 +17,5 @@ export class ProductListComponent implements OnInit{
             this.products = data;
 
         });
-    }
-
-    addItem(){
-
-        this.products.push({productName: 'Hello', productId: 1, unitPrice: 10, description: 'asdfasdfasd'});
-        console.log(this.products);
-
-    }
-
-    editProduct(){
-
     }
 }
