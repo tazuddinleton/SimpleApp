@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SimpleApp.Api.Middlewears;
 using SimpleApp.Persistence.Services;
 using System;
 using System.Collections.Generic;
@@ -44,5 +46,12 @@ namespace SimpleApp.Api.Common
         {            
             return Encoding.ASCII.GetBytes(str);
         }
+
+        public static IApplicationBuilder UseCustomExceptionHanlder(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<ExceptionHandlerMiddlewear>();
+        }
+
+
     }
 }

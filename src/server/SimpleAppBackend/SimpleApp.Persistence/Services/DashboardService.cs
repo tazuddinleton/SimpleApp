@@ -1,4 +1,5 @@
-﻿using SimpleApp.Domain.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleApp.Domain.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,16 @@ namespace SimpleApp.Persistence.Services
             var dashboard = new DashboardDto();
             dashboard.TotalNumOfProducts = _context.Products.Count();
             dashboard.NumOfProductByUser = _context.Products.Count(x => x.CreatedBy == _currentUser.UserId);
+
+            dashboard.ProductCategories = _context.Categories
+                .Include(p => p.Products)
+                .Select(c => new ProductCategories
+                {
+                    Category = c.CategoryName,
+                    NumberOfProducts = c.Products.Count
+                })
+                .ToList();
+
             return Task.FromResult(dashboard);
         }
     }

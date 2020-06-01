@@ -19,9 +19,4 @@
     <ProjectReference Include="..\SimpleApp.Persistence\SimpleApp.Persistence.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Middlewears\" />
-  </ItemGroup>
-
 </Project>

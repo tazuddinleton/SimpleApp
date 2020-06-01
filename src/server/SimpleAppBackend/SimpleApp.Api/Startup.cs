@@ -51,6 +51,8 @@ namespace SimpleApp.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCustomExceptionHanlder();
+
             app.UseRouting();
             app.UseCors(opt =>
             {

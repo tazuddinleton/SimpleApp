@@ -22,7 +22,7 @@ namespace SimpleApp.Api.Controllers
 
         [HttpGet("{id}")]        
         public async Task<ActionResult<ProductDto>> Get([FromRoute] int id)
-        {
+        {            
             var product = await _productRepository.GetByIdAsync(id);
             if (product == null)
                 return NotFound();
