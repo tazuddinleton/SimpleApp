@@ -37,6 +37,7 @@ namespace SimpleApp.Api
             // extension methods are great way to keep things clean
             services                
                 .AddCommonServices()
+                .AddDomainServices()
                 .AddPersistence(Configuration)
                 .AddRepositories()
                 .AddJwtAuthentication(Configuration);

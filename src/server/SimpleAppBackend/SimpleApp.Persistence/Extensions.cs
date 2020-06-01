@@ -30,6 +30,13 @@ namespace SimpleApp.Persistence
             return services;
         }
 
+
+        public static IServiceCollection AddDomainServices(this IServiceCollection services)
+        {            
+            services.AddScoped<IDashboardService, DashboardService>();
+            return services;
+        }
+
         public static string ToSHA256(this string input)
         {
             using (var sha = SHA256.Create())
