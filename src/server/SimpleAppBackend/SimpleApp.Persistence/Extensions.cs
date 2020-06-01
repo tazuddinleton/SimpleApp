@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleApp.Persistence.Repositories;
+using SimpleApp.Persistence.Services;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;

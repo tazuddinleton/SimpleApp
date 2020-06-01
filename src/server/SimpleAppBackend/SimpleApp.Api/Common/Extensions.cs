@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SimpleApp.Persistence.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,10 @@ namespace SimpleApp.Api.Common
 {
     public static class Extensions
     {
-        public static IServiceCollection AddSecurityServices(this IServiceCollection services)
+        public static IServiceCollection AddCommonServices(this IServiceCollection services)
         {
-            services.AddScoped<IJwtTokenService, JwtTokenService>();            
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             return services;
         }
 

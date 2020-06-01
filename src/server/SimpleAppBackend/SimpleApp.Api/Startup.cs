@@ -31,20 +31,15 @@ namespace SimpleApp.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddHttpContextAccessor();
             // setting the global authorize filter to prevent unauthorized access
             services.AddControllers(x => x.Filters.Add(new AuthorizeFilter()));
             // extension methods are great way to keep things clean
-            services
-                .AddSecurityServices()
+            services                
+                .AddCommonServices()
                 .AddPersistence(Configuration)
-                .AddRepositories();
-
-            // In actual situation user secrete managers should be used
-            
-
-
-
-            services.AddJwtAuthentication(Configuration);
+                .AddRepositories()
+                .AddJwtAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
