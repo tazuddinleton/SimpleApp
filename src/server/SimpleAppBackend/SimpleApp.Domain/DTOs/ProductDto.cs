@@ -12,6 +12,9 @@ namespace SimpleApp.Domain.DTOs
         public string ProductName { get; set; }
         public string Description { get; set; }        
         public decimal UnitPrice { get; set; }
+        public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
+
 
         // This mapping could have been done using tools like Automapper         
         public static ProductDto FromEntity(Product product)
@@ -23,7 +26,9 @@ namespace SimpleApp.Domain.DTOs
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 Description = product.Description,
-                UnitPrice = product.UnitPrice
+                UnitPrice = product.UnitPrice,
+                CategoryName = product.Category.CategoryName,
+                CategoryId = product.CategoryId                
             };
         }
 
@@ -34,7 +39,8 @@ namespace SimpleApp.Domain.DTOs
                 ProductId = (int)dto.ProductId,
                 ProductName = dto.ProductName,
                 Description = dto.Description,
-                UnitPrice = dto.UnitPrice
+                UnitPrice = dto.UnitPrice,
+                CategoryId = dto.CategoryId
             };
         }
     }

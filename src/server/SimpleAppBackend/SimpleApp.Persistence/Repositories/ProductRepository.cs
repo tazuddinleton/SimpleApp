@@ -23,7 +23,10 @@ namespace SimpleApp.Persistence.Repositories
 
         public async Task<ProductDto> GetByIdAsync(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context
+                .Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(x => x.ProductId == id);            
             return ProductDto.FromEntity(product);
         }
 
@@ -39,6 +42,7 @@ namespace SimpleApp.Persistence.Repositories
                 entity.ProductName = dto.ProductName;
                 entity.Description = dto.Description;
                 entity.UnitPrice = dto.UnitPrice;
+                entity.CategoryId = dto.CategoryId;
             }
             else
             {
@@ -52,6 +56,7 @@ namespace SimpleApp.Persistence.Repositories
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
         {
             return await _context.Products
+                .Include(p => p.Category)
                 .Select(p => ProductDto.FromEntity(p))
                 .ToListAsync();
         }
