@@ -12,5 +12,5 @@ export class DashboardComponent implements OnInit{
     ngOnInit(): void {
         this.message = 'Dashboard will be shown here';
         this.items = [1,2,3];
-    }    
+    }
 }

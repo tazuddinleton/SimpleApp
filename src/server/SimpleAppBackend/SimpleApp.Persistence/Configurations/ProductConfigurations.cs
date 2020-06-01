@@ -13,10 +13,19 @@ namespace SimpleApp.Persistence.Configurations
         {
             builder.Property(p => p.UnitPrice)
                 .HasColumnType("decimal(18,8)");
-
-            for (int i = 1; i <= 10; i++)
+            int max = 12;
+            for (int i = 1; i <= max; i++)
             {
-                builder.HasData(new Product() { ProductId = i, ProductName = $"Product {i}", UnitPrice = 145.55M, Description = $"Product Description {i}" });
+                builder.HasData(new Product() 
+                { 
+                    ProductId = i, 
+                    CategoryId = (i % 4)+1, 
+                    ProductName = $"Product {i}", 
+                    UnitPrice = 145.55M, 
+                    Description = $"Product Description {i}",
+                    DateCreated = DateTime.Now,
+                    CreatedBy = "tazuddin"
+                });
             }            
         }
     }

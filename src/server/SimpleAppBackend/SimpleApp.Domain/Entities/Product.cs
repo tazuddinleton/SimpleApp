@@ -14,5 +14,8 @@ namespace SimpleApp.Domain.Entities
         // decimal unit price will be problematic in real situation for fractions
         public decimal UnitPrice { get; set; }
 
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+
     }
 }

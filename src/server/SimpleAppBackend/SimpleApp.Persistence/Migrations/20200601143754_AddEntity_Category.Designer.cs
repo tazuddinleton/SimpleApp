@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleApp.Persistence;
 
 namespace SimpleApp.Persistence.Migrations
 {
     [DbContext(typeof(SimpleAppDbContext))]
-    partial class SimpleAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200601143754_AddEntity_Category")]
+    partial class AddEntity_Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,12 +56,6 @@ namespace SimpleApp.Persistence.Migrations
                             CategoryId = 3,
                             CategoryName = "Category 3",
                             Description = "Description 3"
-                        },
-                        new
-                        {
-                            CategoryId = 4,
-                            CategoryName = "Category 4",
-                            Description = "Description 4"
                         });
                 });
 
@@ -69,9 +65,6 @@ namespace SimpleApp.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -96,17 +89,13 @@ namespace SimpleApp.Persistence.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             ProductId = 1,
-                            CategoryId = 2,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 917, DateTimeKind.Local).AddTicks(1166),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 1",
                             ProductName = "Product 1",
                             UnitPrice = 145.55m
@@ -114,9 +103,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 2,
-                            CategoryId = 3,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1682),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 2",
                             ProductName = "Product 2",
                             UnitPrice = 145.55m
@@ -124,9 +111,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 3,
-                            CategoryId = 4,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1722),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 3",
                             ProductName = "Product 3",
                             UnitPrice = 145.55m
@@ -134,9 +119,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 4,
-                            CategoryId = 1,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1730),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 4",
                             ProductName = "Product 4",
                             UnitPrice = 145.55m
@@ -144,9 +127,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 5,
-                            CategoryId = 2,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1736),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 5",
                             ProductName = "Product 5",
                             UnitPrice = 145.55m
@@ -154,9 +135,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 6,
-                            CategoryId = 3,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1745),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 6",
                             ProductName = "Product 6",
                             UnitPrice = 145.55m
@@ -164,9 +143,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 7,
-                            CategoryId = 4,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1751),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 7",
                             ProductName = "Product 7",
                             UnitPrice = 145.55m
@@ -174,9 +151,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 8,
-                            CategoryId = 1,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1757),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 8",
                             ProductName = "Product 8",
                             UnitPrice = 145.55m
@@ -184,9 +159,7 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 9,
-                            CategoryId = 2,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1762),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 9",
                             ProductName = "Product 9",
                             UnitPrice = 145.55m
@@ -194,31 +167,9 @@ namespace SimpleApp.Persistence.Migrations
                         new
                         {
                             ProductId = 10,
-                            CategoryId = 3,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1771),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Product Description 10",
                             ProductName = "Product 10",
-                            UnitPrice = 145.55m
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            CategoryId = 4,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1849),
-                            Description = "Product Description 11",
-                            ProductName = "Product 11",
-                            UnitPrice = 145.55m
-                        },
-                        new
-                        {
-                            ProductId = 12,
-                            CategoryId = 1,
-                            CreatedBy = "tazuddin",
-                            DateCreated = new DateTime(2020, 6, 1, 20, 43, 22, 918, DateTimeKind.Local).AddTicks(1857),
-                            Description = "Product Description 12",
-                            ProductName = "Product 12",
                             UnitPrice = 145.55m
                         });
                 });
@@ -253,15 +204,6 @@ namespace SimpleApp.Persistence.Migrations
                             Password = "HIv+j4AdeXRcRjHQn/82yCqjf8TM5PyUZoPXsza2MDI=",
                             Username = "loneranger"
                         });
-                });
-
-            modelBuilder.Entity("SimpleApp.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("SimpleApp.Domain.Entities.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
