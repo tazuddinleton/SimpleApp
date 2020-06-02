@@ -23,7 +23,7 @@ export class AuthService implements CanActivate{
   canActivate(): boolean  {
     return this.isLoggedIn;
   }
-
+// Todo : detect 
   login(model: LoginModel): void{
       this.http.post(this.apiBase + "account/login", model)
       .subscribe((success:LoginResponse) => {
@@ -55,7 +55,12 @@ export class AuthService implements CanActivate{
   }
 
   private handleError(error: any){
-    this.notificationService.notify({type: MessageType.error, message: "Username/Password does not match"});    
+    if(error.status == 401){
+      this.notificationService.notify({type: MessageType.error, message: "Username/Password does not match"});    
+    }else{
+      this.notificationService.notify({type: MessageType.error, message: "Something went wrong along the way"});    
+    }
+    
     this.user = null;
   }  
 }
