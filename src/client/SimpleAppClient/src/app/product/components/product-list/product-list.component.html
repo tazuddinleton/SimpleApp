@@ -1,10 +1,63 @@
-<div class="row">
-  <div class="col mr-auto mb-2">
-    <button [routerLink]="['/products',0,'edit']" class="btn btn-primary float-right" style="size:80px">Add Product</button>
-  </div>
+
+
+<div class="card" > 
+  <div class="card-header">
+    <h5 class="card-title">Product List</h5>
+</div>
+<div class="card-body">
+  
+
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+    
+        <td>{{ product.productName }}</td>
+        <td>{{product.categoryName}}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.unitPrice }}</td>
+        <td>
+          <a [routerLink]="['/products', product.productId, 'edit']" style="font-size: 15px; color: dodgerblue;">
+            <i class="fa fa-edit"></i>            
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>  
+  <a [routerLink]="['/products', 0, 'edit']" class="btn btn-primary">Add Product</a>
 </div>
 
-<div class="row">
+
+<div class="card-footer">
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active">
+        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+</div>
+
+
+
+<!-- <div class="row">
   <div class="col">
 
     <table
@@ -39,4 +92,4 @@
     </table>
     
   </div>
-</div>
+</div> -->
