@@ -32,13 +32,21 @@
       </tr>
     </tbody>
   </table>  
-  <a [routerLink]="['/products', 0, 'edit']" class="btn btn-primary">Add Product</a>
+  
+  <div class="row">
+    <div class="col-md-1">
+      <a style="margin-top: 0;" [routerLink]="['/products', 0, 'edit']" class="btn btn-primary">Add Product</a>
+    </div>
+    <div class="col-md-2  ">
+      <input type="text" style="padding:4px" placeholder="Filter" #filter ngModel name="filter"/>
+    </div>
+  </div>
 </div>
 
 
 <div class="card-footer">
   <nav aria-label="...">
-    <ul class="pagination">
+    <ul class="pagination pagination-sm justify-content-center">
       <li class="page-item disabled">
         <a class="page-link" href="#" tabindex="-1">Previous</a>
       </li>
