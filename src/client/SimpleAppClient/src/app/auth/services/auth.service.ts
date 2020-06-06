@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoginModel, LoginResponse } from '../models/login.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { Router, CanActivate } from '@angular/router';
-import { NotificationService } from 'src/app/message/services/notification.service';
-import { Message } from 'src/app/message/models/notification';
-import { MessageType } from 'src/app/message/models/notification.type';
+import { catchError } from 'rxjs/operators';
 
 
 
@@ -19,22 +17,13 @@ export class AuthService implements CanActivate{
   constructor(
     private http: HttpClient, 
     private router: Router, 
-    private notificationService: NotificationService) {}
+    ) {}
   canActivate(): boolean  {
     return this.isLoggedIn;
   }
 // Todo : detect 
-  login(model: LoginModel): void{
-      this.http.post(this.apiBase + "account/login", model)
-      .subscribe((success:LoginResponse) => {
-        localStorage.setItem('bearer_token', success.token);
-        localStorage.setItem('token_expires', JSON.stringify(success.expires));
-        this.router.navigate(['/dashboard']);
-        this.user = {name: model.username};
-        localStorage.setItem('username', model.username);
-      },(err) => {
-        this.handleError(err);
-      });
+  login(model: LoginModel): Observable<any>{
+      return this.http.post(this.apiBase + "account/login", model);
   }
   
   get isLoggedIn():boolean {
@@ -54,13 +43,11 @@ export class AuthService implements CanActivate{
     }
   }
 
-  private handleError(error: any){
-    if(error.status == 401){
-      this.notificationService.notify({type: MessageType.error, message: "Username/Password does not match"});    
-    }else{
-      this.notificationService.notify({type: MessageType.error, message: "Something went wrong along the way"});    
-    }
-    
-    this.user = null;
-  }  
+  
+  handleError(error: HttpErrorResponse, caught: Observable<any>) : any{
+    // log the error to a remote error loging system
+    let errorMsg: string = "An error occured. " + error.message;
+    console.log(errorMsg);
+    return throwError(errorMsg);
+}
 }

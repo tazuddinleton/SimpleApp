@@ -9,13 +9,14 @@ export class ProductListComponent implements OnInit{
 
     public pageTitle: string = "This is product list page!";    
     public products: Product[] = [];
+    
     constructor(private productService:ProductService){
         
     }
-    ngOnInit(): void {
-        this.productService.getAllProducts().subscribe(data => {
-            this.products = data;
 
+    ngOnInit(): void {
+        let subscription = this.productService.getAllProducts().subscribe(data => {
+            this.products = data;
         });
     }
 }

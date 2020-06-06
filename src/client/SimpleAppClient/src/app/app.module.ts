@@ -14,6 +14,7 @@ import { AuthService } from './auth/services/auth.service';
 import { AuthInterceptor } from './auth/infrastructure/auth.interceptor';
 import { NotificationService } from './message/services/notification.service';
 import { NotificationComponent } from './message/components/notification.component';
+import { HttpErrorInterceptor } from './auth/infrastructure/error.interceptor';
 
 
 
@@ -43,7 +44,8 @@ import { NotificationComponent } from './message/components/notification.compone
   providers: [
     AuthService,
     NotificationService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
