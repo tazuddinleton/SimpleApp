@@ -9,7 +9,9 @@ import { catchError } from 'rxjs/operators';
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService implements CanActivate{
   // api should be injected here
   apiBase: string = 'http://localhost:2020/api/';

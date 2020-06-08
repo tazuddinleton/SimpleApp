@@ -14,7 +14,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-
+    
     return next.handle(req)
     .pipe(        
         catchError((err: HttpErrorResponse) => {
@@ -27,7 +27,18 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         }
         // server side error
         else {
-          errorMsg = `Error Code: ${err.status}\nMessage: ${err.message}`;
+          if(err.status === 417){
+            errorMsg += 'Errors: ';
+            err.error.Errors.forEach(msg => {
+              errorMsg += msg + '\n';
+            })
+          }
+          else if(err.status === 401){
+            errorMsg = "Username or Password does not match!";
+          }
+          else{
+            errorMsg = `Error: ${err.error.message}`;
+          }          
         }
         return throwError(errorMsg);
         })

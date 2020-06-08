@@ -42,7 +42,6 @@ import { HttpErrorInterceptor } from './auth/infrastructure/error.interceptor';
     ]),         
   ],
   providers: [
-    AuthService,
     NotificationService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}

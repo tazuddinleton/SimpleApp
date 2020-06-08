@@ -5,7 +5,24 @@
     <h5 class="card-title">Product List</h5>
 </div>
 <div class="card-body">
-  
+  <div class="row">
+    <div class="col-md-1">
+      <a style="margin-top: 0;" [routerLink]="['/products', 0, 'edit']" class="btn btn-primary">Add Product</a>
+    </div>
+    <div class="col-md-2  ">
+      <input type="text" style="padding:4px" 
+      [(ngModel)]="listFilter"
+      placeholder="Filter" name="filter"/>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-auto col-sm-4  mb-1">
+      <h3>Filtered By: {{listFilter}}</h3>
+    </div>
+
+  </div>
 
   <table class="table table-sm">
     <thead>
@@ -18,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of filteredProducts">
     
         <td>{{ product.productName }}</td>
         <td>{{product.categoryName}}</td>
@@ -33,14 +50,7 @@
     </tbody>
   </table>  
   
-  <div class="row">
-    <div class="col-md-1">
-      <a style="margin-top: 0;" [routerLink]="['/products', 0, 'edit']" class="btn btn-primary">Add Product</a>
-    </div>
-    <div class="col-md-2  ">
-      <input type="text" style="padding:4px" placeholder="Filter" #filter ngModel name="filter"/>
-    </div>
-  </div>
+
 </div>
 
 

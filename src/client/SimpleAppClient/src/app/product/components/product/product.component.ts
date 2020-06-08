@@ -47,6 +47,9 @@ export class ProductComponent implements OnInit{
             }
             this.notificationService.notify({message: "Product saved successfully", type: MessageType.success});
             this.router.navigate(['/products']);
-        }, error => this.errorMsg = error)
+        }, error => {
+            this.errorMsg = error;
+            this.notificationService.notify({type: MessageType.error, message: this.errorMsg});
+        })
     }
 }

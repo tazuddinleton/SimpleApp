@@ -41,7 +41,9 @@ export class LoginComponent{
         this.loginModel = {username, password};
             this.authService.login(this.loginModel)
             .subscribe(
-                this.handleLoginSuccess,
+                (success:LoginResponse) => {
+                    this.handleLoginSuccess(success)
+                },
                 error => {
                     this.errorMsg = error
                     this.handleError(this.errorMsg);

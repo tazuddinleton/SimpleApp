@@ -25,7 +25,7 @@ export class ProductService {
         return this.http.get<Product>(this.apiBase + "product/"+id.toString());
     }
 
-    saveProduct(product: Product){
+    saveProduct(product: Product){        
         return this.http.post<number>(this.apiBase + "product", product);
     }
 

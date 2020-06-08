@@ -5,7 +5,6 @@ import { LoginComponent } from './components/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
 @NgModule({
     imports: [
         CommonModule,
@@ -17,7 +16,7 @@ import { CommonModule } from '@angular/common';
     ],
     declarations: [
         LoginComponent        
-    ]    
+    ]        
 })
 export class AuthModule{
 
