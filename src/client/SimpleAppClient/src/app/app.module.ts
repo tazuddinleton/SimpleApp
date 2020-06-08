@@ -10,11 +10,11 @@ import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
-import { AuthService } from './auth/services/auth.service';
 import { AuthInterceptor } from './auth/infrastructure/auth.interceptor';
 import { NotificationService } from './message/services/notification.service';
 import { NotificationComponent } from './message/components/notification.component';
 import { HttpErrorInterceptor } from './auth/infrastructure/error.interceptor';
+import { SharedModule } from './_shared/shared.module';
 
 
 
@@ -30,10 +30,10 @@ import { HttpErrorInterceptor } from './auth/infrastructure/error.interceptor';
     BrowserModule,
     HttpClientModule, 
     AppRoutingModule,     
+    SharedModule,
     AuthModule,
     DashboardModule, 
-    ProductModule,
- 
+    ProductModule,    
     
     RouterModule.forRoot([      
       {path: 'home', component: HomeComponent},      

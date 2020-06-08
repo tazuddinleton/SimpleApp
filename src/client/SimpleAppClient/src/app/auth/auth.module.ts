@@ -2,17 +2,14 @@ import { NgModule, Pipe } from '@angular/core';
 
 import {RouterModule} from '@angular/router';
 import { LoginComponent } from './components/login.component';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../_shared/shared.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
+    imports: [        
+        SharedModule,
         RouterModule.forChild([
             {path: 'login', component: LoginComponent}
-        ])        ,
-        CommonModule
+        ])        
     ],
     declarations: [
         LoginComponent        

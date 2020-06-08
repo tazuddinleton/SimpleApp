@@ -2,21 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard.component';
 import { AuthService } from '../auth/services/auth.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { DashboardService } from './services/dashboard.service';
+import { SharedModule } from '../_shared/shared.module';
 
 @NgModule({   
-    declarations: [
-        DashboardComponent
-    ], 
-    imports: [
-        CommonModule,
-        FormsModule,
+    imports: [       
+        SharedModule,
         RouterModule.forChild([
             {path: 'dashboard', component: DashboardComponent, canActivate: [AuthService]}
         ])
     ],
+    declarations: [
+        DashboardComponent
+    ], 
+    
     providers: [
         DashboardService
     ]

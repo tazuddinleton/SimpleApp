@@ -7,6 +7,7 @@ import { ProductService } from './services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from './services/category.service';
+import { SharedModule } from '../_shared/shared.module';
 
 
 @NgModule({
@@ -15,8 +16,7 @@ import { CategoryService } from './services/category.service';
         ProductComponent 
     ],
     imports: [
-        CommonModule,
-        FormsModule,
+        SharedModule,        
         RouterModule.forChild([
             {path: 'products', component: ProductListComponent, canActivate: [AuthService]},
             {path: 'products/:id/edit', component: ProductComponent, canActivate: [AuthService]}
