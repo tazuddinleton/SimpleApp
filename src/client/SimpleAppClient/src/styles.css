@@ -27,9 +27,6 @@ form{
 	margin-top:20px;
 }
 
-.link-active{
-	background-color: lightblue;
-}
 .nav-item{
 	cursor: pointer !important;
 }
