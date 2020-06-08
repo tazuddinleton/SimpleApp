@@ -35,7 +35,7 @@ export class AuthService implements CanActivate{
   logOut(){
     this.user = null;
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   logUserInOnRefresh(){
@@ -52,4 +52,17 @@ export class AuthService implements CanActivate{
     console.log(errorMsg);
     return throwError(errorMsg);
 }
+
+  getToken(){
+    const token = localStorage.getItem('bearer_token');
+    return token;
+  }
+
+  handleLoginSuccess(success: LoginResponse, user: User){
+    localStorage.setItem('bearer_token', success.token);
+    localStorage.setItem('token_expires', JSON.stringify(success.expires));
+
+    this.user = {name: user.name};
+    localStorage.setItem('username', user.name);
+  }
 }

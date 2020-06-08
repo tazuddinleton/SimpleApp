@@ -45,11 +45,11 @@ export class ProductComponent implements OnInit{
             if(!this.product.productId){
                 this.product.productId = id;
             }
-            this.notificationService.notify({message: "Product saved successfully", type: MessageType.success});
+            this.notificationService.displaySuccess("Product saved successfully");
             this.router.navigate(['/products']);
         }, error => {
             this.errorMsg = error;
-            this.notificationService.notify({type: MessageType.error, message: this.errorMsg});
+            this.notificationService.displayError(this.errorMsg);
         })
     }
 }

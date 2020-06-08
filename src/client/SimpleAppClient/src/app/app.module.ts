@@ -31,7 +31,6 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     HttpClientModule, 
     AppRoutingModule,     
-    SharedModule,
     HomeModule,
     AuthModule,
     DashboardModule, 

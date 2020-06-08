@@ -52,11 +52,8 @@ export class LoginComponent{
     }
 
     handleLoginSuccess(success:LoginResponse){
-        localStorage.setItem('bearer_token', success.token);
-        localStorage.setItem('token_expires', JSON.stringify(success.expires));
-        this.router.navigate(['/dashboard']);
-        this.authService.user = {name: this.loginModel.username};
-        localStorage.setItem('username', this.loginModel.username);
+        this.authService.handleLoginSuccess(success, {name: this.loginModel.username});
+        this.router.navigate(['/dashboard']);        
     }
     
     handleError(error: any){

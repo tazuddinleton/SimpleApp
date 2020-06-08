@@ -8,6 +8,7 @@ import { IDashboard } from '../models/dashboard';
 import { DashboardService } from '../services/dashboard.service';
 import { NotificationService } from 'src/app/message/services/notification.service';
 import { Chart } from 'chart.js';
+import { MessageType } from 'src/app/message/models/notification.type';
 
 @Component({
   selector: 'dashboard',
@@ -113,8 +114,8 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
 
   loadDashboard() {
     this.dashboardService.get().subscribe(
-      (data) => (this.dashboard = data),
-      (error) => this.notificationService.notify(error)
+      (data) => (this.dashboard = data), 
+      (error) => this.notificationService.displayError(error)
     );
   }
 }
