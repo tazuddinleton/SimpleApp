@@ -19,14 +19,14 @@ export class LoginComponent{
     errorMsg: string;
     loginModel: LoginModel;
 
-    constructor(private authService: AuthService, 
+    constructor(private authService: AuthService,
         private router: Router,
         private notificationService: NotificationService
         ){
 
     }
 
-    login(form: NgForm){        
+    login(form: NgForm){
         if(!form || !form.valid){
             return;
         }
@@ -37,7 +37,7 @@ export class LoginComponent{
         if(!username || !password){
             return;
         }
-        
+
         this.loginModel = {username, password};
             this.authService.login(this.loginModel)
             .subscribe(
@@ -53,15 +53,16 @@ export class LoginComponent{
 
     handleLoginSuccess(success:LoginResponse){
         this.authService.handleLoginSuccess(success, {name: this.loginModel.username});
-        this.router.navigate(['/dashboard']);        
+        this.router.navigate(['/dashboard']);
     }
-    
+
     handleError(error: any){
     if(error.status == 401){
-      this.notificationService.notify({type: MessageType.error, message: "Username/Password does not match"});    
+      this.notificationService.notify({type: MessageType.error, message: "Username/Password does not match"});
     }else{
-      this.notificationService.notify({type: MessageType.error, message: error});    
-    }    
+      this.notificationService.notify({type: MessageType.error, message: error});
+    }
     this.authService.user = null;
   }
 }
+

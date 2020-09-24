@@ -17,30 +17,34 @@ import { HttpErrorInterceptor } from './auth/infrastructure/error.interceptor';
 import { SharedModule } from './_shared/shared.module';
 import { HomeComponent } from './home/components/landing/home.component';
 import { HomeModule } from './home/home.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,        
+    NavigationComponent,
     NotificationComponent
-    
+
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, 
-    AppRoutingModule,     
+    HttpClientModule,
+    AppRoutingModule,
     HomeModule,
     AuthModule,
-    DashboardModule, 
-    ProductModule,    
-    
-    RouterModule.forRoot([      
-      {path: 'home', component: HomeComponent},      
+    DashboardModule,
+    ProductModule,
+
+    RouterModule.forRoot([
+      {path: 'home', component: HomeComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home'}
-    ]),         
+    ]),
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     NotificationService,

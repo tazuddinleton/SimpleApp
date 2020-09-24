@@ -17,17 +17,17 @@ export class AuthService implements CanActivate{
   apiBase: string = 'http://localhost:2020/api/';
   user: User
   constructor(
-    private http: HttpClient, 
-    private router: Router, 
+    private http: HttpClient,
+    private router: Router,
     ) {}
   canActivate(): boolean  {
     return this.isLoggedIn;
   }
-// Todo : detect 
+// Todo : detect
   login(model: LoginModel): Observable<any>{
       return this.http.post(this.apiBase + "account/login", model);
   }
-  
+
   get isLoggedIn():boolean {
     return !!this.user;
   }
@@ -45,7 +45,7 @@ export class AuthService implements CanActivate{
     }
   }
 
-  
+
   handleError(error: HttpErrorResponse, caught: Observable<any>) : any{
     // log the error to a remote error loging system
     let errorMsg: string = "An error occured. " + error.message;
