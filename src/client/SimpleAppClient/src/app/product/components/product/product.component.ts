@@ -6,15 +6,21 @@ import { NotificationService } from 'src/app/message/services/notification.servi
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
 import {MessageType} from '../../../message/models/notification.type';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
-@Component({    
+@Component({
     templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit{
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
     public product: Product;
     public categories: Category[];
     public errorMsg: string;
-    constructor(private productService: ProductService, 
+
+    constructor(private productService: ProductService,
         private categoryService: CategoryService,
         private route: ActivatedRoute,
         private router: Router,
@@ -22,14 +28,36 @@ export class ProductComponent implements OnInit{
         ){
         this.product = new Product();
     }
-    
+
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
         this.categoryService.getAllCategories().subscribe(data => this.categories = data);
         this.getProduct(+id);
+
+        this.dropdownList = [
+          { item_id: 1, item_text: 'Mumbai' },
+          { item_id: 2, item_text: 'Bangaluru' },
+          { item_id: 3, item_text: 'Pune' },
+          { item_id: 4, item_text: 'Navsari' },
+          { item_id: 5, item_text: 'New Delhi' }
+        ];
+        this.selectedItems = [
+          { item_id: 3, item_text: 'Pune' },
+          { item_id: 4, item_text: 'Navsari' }
+        ];
+        this.dropdownSettings = {
+          singleSelection: false,
+          idField: 'categoryId',
+          textField: 'categoryName',
+          selectAllText: 'Select All',
+          unSelectAllText: 'UnSelect All',
+          itemsShowLimit: 3,
+          allowSearchFilter: true
+        } as IDropdownSettings;
+
     }
 
-    getProduct(id: number){        
+    getProduct(id: number){
         if(id === 0){
             this.product = new Product();
             return;
@@ -52,4 +80,5 @@ export class ProductComponent implements OnInit{
             this.notificationService.displayError(this.errorMsg);
         })
     }
+
 }

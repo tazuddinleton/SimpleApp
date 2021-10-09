@@ -8,21 +8,23 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from './services/category.service';
 import { SharedModule } from '../_shared/shared.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
     declarations: [
         ProductListComponent,
-        ProductComponent 
+        ProductComponent
     ],
     imports: [
-        SharedModule,        
+        SharedModule,
         RouterModule.forChild([
             {path: 'products', component: ProductListComponent, canActivate: [AuthService]},
             {path: 'products/:id/edit', component: ProductComponent, canActivate: [AuthService]}
-        ])
+        ]),
+        NgMultiSelectDropDownModule.forRoot()
     ],
-   
+
     providers:[
         ProductService,
         CategoryService

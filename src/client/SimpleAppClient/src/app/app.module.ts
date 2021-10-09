@@ -19,7 +19,7 @@ import { HomeComponent } from './home/components/landing/home.component';
 import { HomeModule } from './home/home.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { environment } from '../environments/environment';
     AuthModule,
     DashboardModule,
     ProductModule,
-
+    NgMultiSelectDropDownModule.forRoot(),
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -51,6 +51,9 @@ import { environment } from '../environments/environment';
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    NgMultiSelectDropDownModule
+  ]
 })
 export class AppModule { }

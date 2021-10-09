@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  simpleapp.api:
+    image: ${DOCKER_REGISTRY-}simpleappapi
+    build:
+      context: .
+      dockerfile: SimpleApp.Api/Dockerfile
+    environment: 
+      - ConnectionStrings:DB_Conn
+    depends_on: 
+      - db
+
+  db: 
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Pass@123
+    ports: 
+      - 1600:1433
+
+

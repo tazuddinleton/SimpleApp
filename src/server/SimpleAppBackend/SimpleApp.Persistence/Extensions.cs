@@ -16,9 +16,11 @@ namespace SimpleApp.Persistence
         {
             services.AddDbContext<SimpleAppDbContext>(optionBuilder => {
                 optionBuilder.UseSqlServer(configuration.GetConnectionString("simple"), 
-                    config => config.MigrationsAssembly("SimpleApp.Persistence"));
+                    config => config.MigrationsAssembly("SimpleApp.Persistence")
+                    .EnableRetryOnFailure());
                 
-            });
+            })
+                ;
             return services;
         }
 

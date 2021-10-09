@@ -27,7 +27,9 @@ namespace SimpleApp.Api.Controllers
         {
             var user = await _userRepository.GetByUsernameAndPassword(model.Username, model.Password);
             if (user == null)
+            {
                 return Unauthorized();
+            }
 
             return Ok(new { Token = _tokenService.GenerateToken(user), _tokenService.Descriptor.Expires});
         }
